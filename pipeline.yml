@@ -1,0 +1,15 @@
+---
+resources:
+- name: my-git-repo
+  type: git
+  source:
+    uri: https://github.com/ruanbekker/concourse-test
+    branch: basic-helloworld
+
+jobs:
+- name: hello-world-job
+  public: true
+  plan:
+  - get: my-git-repo
+  - task: task_print-hello-world
+    file: my-git-repo/ci/task-hello-world.yml

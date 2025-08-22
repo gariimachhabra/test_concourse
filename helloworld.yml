@@ -1,0 +1,59 @@
+# resources:
+#   - name: hello-world-repo
+#     type: git
+#     source:
+#       uri: https://github.com/mentorship-guidance/GoDigitrons-Screener.git
+#       branch: feature/garima_concourse
+    
+# jobs:
+#   - name: hello-world-job
+#     public: true
+#     plan:
+#       - get: hello-world-repo
+#         # trigger: true
+#       - task: run-hello
+#         config:
+#           platform: linux
+#           image_resource:
+#             type: docker-image
+#             source:
+#               repository: busybox
+#           inputs:
+#             - name: hello-world-repo
+#           run:
+#             path: echo
+#             args:
+#               - hello world
+#             dir: ""
+---
+resources:
+  - name: src
+    type: git
+    icon: github
+    source:
+      uri: https://github.com/gariimachhabra/test_concourse.git
+      branch: concourse_test
+
+jobs:
+  - name: hello-world-job
+    public: true
+    plan:
+      - get: src
+      - task: run-hello
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: python
+              tag: "3.9"
+          inputs:
+            - name: src
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                cd src
+                python test.py
+ 
