@@ -9,7 +9,7 @@ def fetch_stock_data():
     stock = yf.Ticker(symbol)
     stock_data = stock.history(period="1y")
     
-    engine = create_engine(f'postgresql+psycopg2://myuser:mypassword@172.24.0.2:5432/raw_stock_data')
+    engine = create_engine(f'postgresql+psycopg2://concourse_user:concourse_pass@172.24.0.2:5432/concourse')
     stock_data.to_sql(name="yfinance_data", con=engine, if_exists='replace', index=False)
     print("data inserted")
 
