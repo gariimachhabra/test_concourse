@@ -7,7 +7,7 @@ import psycopg2
 from sqlalchemy import create_engine
 import time
 
-chromedriver_path = "C:/Users/GarimaChhabra/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
+chromedriver_path = "chromedriver.exe"
 
 def screener_login(username, password):
     service = Service(executable_path=chromedriver_path)
