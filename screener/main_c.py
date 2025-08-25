@@ -3,6 +3,7 @@ from datetime import datetime
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 import psycopg2
 from sqlalchemy import create_engine
 import time
@@ -11,6 +12,8 @@ chromedriver_path = "./chromedriver.exe"
 
 def screener_login(username, password):
     service = Service(executable_path=chromedriver_path)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(service=service)
     driver.get("https://www.screener.in/login/?")
     time.sleep(1)
